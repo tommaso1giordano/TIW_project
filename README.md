@@ -10,5 +10,5 @@ A web application to manage exam sessions, grade entry, publication, rejection, 
 - Automatic generation of exam reports (verbals)
 
 ## Technologies
-- **Backend:** Java, REST APIs  
-- **Frontend:** HTML, CSS, JavaScript
+- **Backend:** Java, MySQL, REST APIs  
+- **Frontend:** Thymeleaf, HTML, CSS, JavaScript
