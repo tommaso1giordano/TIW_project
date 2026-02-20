@@ -1,0 +1,13 @@
+IscrittiPage->Verbalizza: verbalizza
+Verbalizza->index.html:[!appelloBelongsToTeacher] redirect
+Verbalizza->EsameDAO: getMatricoleDaVerbalizzare(idAppello)
+EsameDAO-->>Verbalizza: matricoleStudentiDaVerbalizzare
+Verbalizza->VerbaleDAO: [!matricoleStudentiDaVerbalizzare.isEmpty] createEmptyVerbale(idAppello)
+VerbaleDAO-->>Verbalizza:idVerbale
+Verbalizza->VerbaleDAO: getVerbale (idVerbale)
+VerbaleDAO-->>Verbalizza: verbale
+Verbalizza->VerbaleDAO: populateStudentiVerbale(verbale)
+Verbalizza->EsameDAO: adjustRifiutatiGrade(idAppello)
+Verbalizza->EsameDAO: verbalizza(idAppello)
+Verbalizza->VerbalePage: redirect
+Verbalizza->IscrittiPage: [matricoleStudentiDaVerbalizzare.isEmpty] redirect

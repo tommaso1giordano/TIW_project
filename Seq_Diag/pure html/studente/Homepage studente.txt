@@ -1,0 +1,9 @@
+title Homepage studente
+
+GoToStudentHP->StudenteDAO: getCourseEnrollment(matricola)
+GoToStudentHP<-StudenteDAO:corsi
+GoToStudentHP->StudenteDAO: getExams(matricola, scaglione)
+StudenteDAO->AppelloDAO: getAppelliByStudenteScaglione(matricola, scaglione)
+GoToStudentHP<-AppelloDAO:appelli
+GoToStudentHP->CTX:setVariables(...)
+GoToStudentHP->Template Engine: [scaglioneBelongsToTeacher] process("/HomepageStudente.html", ctx, ...)

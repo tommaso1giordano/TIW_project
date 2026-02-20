@@ -1,0 +1,4 @@
+GetAppelli->iscrizioniDAO:isStudenteInScaglione(scaglione, studente)
+note right of GetAppelli:if false send error
+GetAppelli->studenteDAO:getExams(matricola, scaglione)
+GetAppelli<<--studenteDAO: appelli

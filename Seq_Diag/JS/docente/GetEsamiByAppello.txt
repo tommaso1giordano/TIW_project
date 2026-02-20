@@ -1,0 +1,5 @@
+GetEsamiByAppello->AppelloDAO:appelloBelongsToTeacher(matricola)
+note right of GetEsamiByAppello:if false sendError
+GetEsamiByAppello->EsameDAO:[if examState="Non inserito"] getEsamiNonInseritiByAppello(appello)
+GetEsamiByAppello->EsameDAO:[else] getEsamiByAppello(appello)
+GetEsamiByAppello<<--EsameDAO:esami

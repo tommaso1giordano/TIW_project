@@ -1,0 +1,13 @@
+index.html->CheckLogin:login
+
+CheckLogin->DocenteDAO:loginDocente
+DocenteDAO-->>CheckLogin: docente
+CheckLogin->HttpSession: [docente != null] setAttribute(docente)
+CheckLogin->HomepageDocente:[docente != null] redirect
+
+CheckLogin->StudenteDAO:loginStudente
+StudenteDAO-->>CheckLogin: studente
+CheckLogin->HttpSession: [studente != null] setAttribute(studente)
+CheckLogin->HomepageStudente:[studente != null] redirect
+
+CheckLogin->index.html:[docente == studente == null] redirect

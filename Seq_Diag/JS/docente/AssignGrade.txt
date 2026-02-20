@@ -1,0 +1,5 @@
+AssignGrade->AppelloDAO:appelloBelongsToTeacher(matricola)
+note right of AssignGrade:if false sendError
+AssignGrade->EsameDAO:gradePublished(appello, matricola)
+note right of AssignGrade:if true sendError
+AssignGrade->EsameDAO:changeGrade(appello, matricola, voto)

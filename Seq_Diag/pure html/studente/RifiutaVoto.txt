@@ -1,0 +1,5 @@
+Rifiuta->index.html: [!studentBelongsToAppello] redirect
+Rifiuta->ErrorPage.html: [!gradeCanBeRefused] redirect
+Rifiuta->EsameDAO: rifiuta(idAppello, matricola)
+Rifiuta<<--EsameDAO:
+Rifiuta->EsitoPage.html: redirect

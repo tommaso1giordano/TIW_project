@@ -1,0 +1,4 @@
+Pubblica->AppelloDAO:appelloBelongsToTeacher(matricola)
+note right of Pubblica:if false sendError
+Pubblica->EsameDAO:pubblica(appello)
+Pubblica<<--EsameDAO:rowsAffected

@@ -1,0 +1,6 @@
+HomepageDocente.html->Logout: 
+Logout->HttpSession:request.getSession(false)
+HttpSession-->Logout: session
+Logout->HttpSession: [session != null] session.invalidate
+HttpSession-->Logout:
+Logout->index.html: redirect

@@ -1,0 +1,5 @@
+Rifiuta->esameDAO:studentBelongsToAppello(appello, studente)
+note right of Rifiuta:if false send error
+Rifiuta->esameDAO:gradeCanBeRefused(appello, studente)
+note right of Rifiuta:if false send error
+Rifiuta->esameDAO:rifiuta(appello, studente)

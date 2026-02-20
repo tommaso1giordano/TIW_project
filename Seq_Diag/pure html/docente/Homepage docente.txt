@@ -1,0 +1,8 @@
+GoToTeacherHP->DocenteDAO: getScaglioni(matricola)
+DocenteDAO->ScaglioneDAO: getScaglioniByMatricolaDocente(matricola)
+ScaglioneDAO-->GoToTeacherHP: scaglioni
+GoToTeacherHP->DocenteDAO: getDefaultScaglione(matricola)
+GoToTeacherHP<--DocenteDAO: scaglione
+GoToTeacherHP->index.html: [!scaglioneBelongsToTeacher] redirect
+GoToTeacherHP->CTX:[scaglioneBelongsToTeacher] setVariables(...)
+GoToTeacherHP->Template Engine: [scaglioneBelongsToTeacher] process("/HomepageDocente.html", ctx, ...)

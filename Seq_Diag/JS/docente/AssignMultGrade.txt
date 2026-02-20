@@ -1,0 +1,9 @@
+AssignMultGrade->AppelloDAO:appelloBelongsToTeacher(matricola)
+note right of AssignMultGrade:if false sendError
+loop for every matricola
+AssignMultGrade->EsameDAO:gradePublished(appello, matricola)
+note right of AssignMultGrade:if true sendError
+end
+loop for every matricola
+AssignMultGrade->EsameDAO:changeGrade(appello, matricola, voto)
+end

@@ -1,0 +1,12 @@
+GetEsito->esameDAO:studentBelongsToAppello(appello, studente)
+note right of GetEsito:if false send error
+GetEsito->esameDAO:gradeCanBeRefused(appello, studente)
+GetEsito<<--esameDAO:
+GetEsito->esameDAO:getEsamePubblicato(matricola, appello)
+GetEsito<<--esameDAO: esame
+GetEsito->appelloDAO:getAppelloById(appello)
+GetEsito<<--appelloDAO: appello
+GetEsito->scaglioneDAO:getScaglioneById(scaglione)
+GetEsito<<--scaglioneDAO: scaglione
+GetEsito->docenteDAO:getDocenteByMatricola(matricola)
+GetEsito<<--docenteDAO: docente
