@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<LINK rel="stylesheet" type="text/css"  href='css/mystyle.css'>
+<script src="HomepageStudenteIIFE.js" charset="utf-8" defer></script>
+<script src="utils.js" charset="utf-8" defer></script>
+<title>Homepage Studente</title>
+</head>
+<body>
+	<div align="right">
+		<a class="logout" th:href="@{/Logout}">Logout</a>
+	</div>
+	<h3 class="blueTitle" th:text="${studente.getNome() + ' ' + studente.getCognome() + ' homepage'}">francesco bianchi homepage</h3>
+	
+	<table class="blueTable">
+      <tr class="blueTable">
+        <th class="grayTable">Cognome</th>
+        <td class="blueTable" th:text="${studente.getCognome()}">bianchi</td>
+      </tr>
+      <tr class="blueTable">
+        <th class="grayTable">Nome</th>
+        <td class="blueTable" th:text="${studente.getNome()}">francesco</td>
+      </tr>
+      <tr class="blueTable">
+        <th class="grayTable">Matricola</th>
+        <td class="blueTable" th:text="${studente.getMatricola()}">10213658</td>
+      </tr>
+    </table>
+    <br>
+	
+	<div id="id_alert" class="alertmessage"></div>
+	<p class="paragraph" th:if="${isScaglioniEmpty}">Non sei ancora stato iscritto a nessuno corso.</p>
+	
+	<div th:if="${!isScaglioniEmpty}">
+		<p class="paragraph">Usa la seguente lista per ispezionare i corsi a cui sei iscritto:</p>
+		
+		<table>
+			<tr>
+				<td>
+					<table id="id_table_scaglioni" class="blueTable" border="1">
+						<thead>
+							<tr class="blueTable">
+								<th class="blueTable">Nome insegnamento</th>
+								<th class="blueTable">Anno</th>
+							</tr>
+						</thead>
+						<tbody id="id_table_scaglioni_body">
+							<tr class="blueTable" th:each="s : ${scaglioni}">
+								<td class="blueTable">
+									<a class="scaglioneNomeTable" href="#" th:id_scaglione="${s.id}" th:text="${s.nome_insegnamento}">
+									informatica</a>
+								</td>
+								<td class="blueTable" th:text="${s.anno}">2023</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+				<td>
+					<p class="paragraph" id="no_appelli_alert">Non sei stato ancora iscritto a nessun appello.</p>
+					<table id="id_table_appelli" class="blueTable" border="1">
+						<thead id="id_header_appelli" class="blueTable">
+							<tr class="blueTable">
+								<th class="blueTable">Data esame</th>
+							</tr>
+						</thead>
+						<tbody id="id_table_appelli_body" class="blueTable"/>
+					</table>
+				</td>
+			</tr>
+		</table>
+		
+		<div id="id_alert_esito" class="alertmessage"></div>
+		<table>
+	      <tr>
+	        <td>
+	          <table class="blueTable" id="id_esitoTable">
+	            <thead class="blueTable" id="id_esitoTableHead">
+	              <tr class="blueTable">
+	                <th class="blueTable">Corso</th>
+	                <th class="blueTable">Docente</th>
+	                <th class="blueTable">Data</th>
+	                <th class="blueTable">Esito</th>
+	                <th class="blueTable">Stato</th>
+	              </tr>
+	            </thead>
+	            <tbody id="id_esitoTableBody">
+	              <tr/>
+	            </tbody>
+	          </table>
+	        </td>
+	        <td>
+				<button id="id_rifiutaBtn">Rifiuta</button>
+	        </td>
+	      </tr>
+	    </table>
+	</div>
+</body>
+</html>
