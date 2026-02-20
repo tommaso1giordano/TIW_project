@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<LINK rel="stylesheet" type="text/css"  href='css/mystyle.css'>
+<script src="HomepageDocenteIIFE.js" charset="utf-8" defer></script>
+<script src="utils.js" charset="utf-8" defer></script>
+<title>Homepage Docente</title>
+</head>
+<body style="display:none">
+	<div align="right">
+		<a class="logout" th:href="@{/Logout}">Logout</a>
+	</div>
+	<h3 class="blueTitle">Benvenuto nella Homepage Docente!</h3>
+  	<p class="paragraph" th:text="${'E\' bello rivederti,  ' + session.docente.nome + ' ' + session.docente.cognome + '!'}">
+    E' bello rivederti, Federico Bianchi!
+  	</p>
+  	<br>
+  	<p id="alert" class="alertmessage"></p>	
+  	<p class="paragraph" th:if="${isScaglioniEmpty}">Non sei ancora stato assegnato a nessun corso.</p>
+  	
+  	<p>Usa la seguente lista per ispezionare i corsi a cui sei stato assegnato:</p>
+  		
+  	<div th:if="${!isScaglioniEmpty}">
+  		<table style="display:inline-table" id="table_scaglioni" class="blueTable">
+			<thead>
+				<tr class="blueTable">
+					<th class="blueTable">Nome insegnamento</th>
+					<th class="blueTable">Anno</th>
+				</tr>
+			</thead>
+			<tbody id="table_scaglioni_body" class="blueTable">
+				<tr  class="blueTable" th:each="s : ${scaglioni}">
+					<td class="blueTable">
+						<a class="scaglioneNomeTable" href="#" th:id_scaglione="${s.id}" th:text="${s.nome_insegnamento}">
+						informatica</a>
+					</td>
+					<td class="blueTable" th:text="${s.anno}">2020</td>
+				</tr>
+			</tbody>
+		</table>
+		<span id="no_appelli_alert">Non ci sono ancora appelli disponibili per questo scaglione</span>
+		<table id="table_appelli" class="blueTable">
+			<thead>
+				<tr class="blueTable">
+					<tr>
+						<th class="blueTable" colspan=2>ID scaglione: <span id="header_appelli" class="blueHeader"></span></th>
+					</tr>
+					<tr>
+						<th id = "id_dest_appelli" class="blueTable">ID appello</th>
+						<th id = "id_dest_appelli" class="blueTable">Data appello</th>
+					</tr>
+			</thead>
+			<tbody id="table_appelli_body" class="blueTable">
+			</tbody>
+		</table>
+		
+		<br>
+		
+		<div id="master_div_esami">
+		
+			<p id="no_esami_alert">Non ci sono ancora studenti iscritti a questo appello.</p>
+			
+			<table id="table_esami" class="blueTable">
+				<thead>
+					<tr>
+						<th class="blueTable" colspan=7>ID appello: <span id="header_esami_info" class="blueHeader"></span></th>
+					</tr>
+					<tr id="header_esami" class="blueTable">
+						<th id = "id_dest_esami" comparatorType="int" class="blueTable"><a href="#">Matricola studente</a></th>
+						<th id = "id_dest_esami" comparatorType="string" type="int" class="blueTable"><a href="#">Cognome e nome</a></th>
+						<th id = "id_dest_esami" comparatorType="string" class="blueTable"><a href="#">Email</a></th>
+						<th id = "id_dest_esami" comparatorType="string" class="blueTable"><a href="#">Corso di laurea</a></th>
+						<th id = "id_dest_esami" comparatorType="voto" class="blueTable"><a href="#">Voto</a></th>
+						<th id = "id_dest_esami" comparatorType="stato" class="blueTable"><a href="#">Stato di valutazione</a></th>
+						<th id = "id_dest_esami" class="blueTable"></th>
+					</tr>
+				</thead>
+				<tbody id="table_esami_body" class="blueTable">
+				</tbody>
+				<tr>
+					<td>
+						<form method="POST">
+							<input id="pubblica_button" type="submit" value="Pubblica">
+							<br>
+							<input id="verbalizza_button" type="submit" value="Verbalizza">
+							<br>
+							<input id="inserimento_multiplo_button" type="submit" value="Inserimento multiplo">
+						</form>
+					</td>
+				</tr>	
+			</table>
+			
+			<table id="verbali_table" class="blueTable">
+				<thead>
+					<tr class="blueTable">
+						<th class="blueTable">ID verbale</th>
+						<th class="blueTable">Data creazione</th>
+					</tr>
+				</thead>
+				<tbody id="verbali_table_body" class="blueTable"></tbody>
+			</table>
+			
+			<div id="verbale_div">
+	 	
+		 		<table id="verbale_table" class="blueTable"></table>
+			    
+				<table id="studenti_verbale_table" class="blueTable" border="1">
+					<thead>
+						<tr class="blueTable">
+							<th class="blueTable">Matricola studente</th>
+							<th class="blueTable">Voto esame</th>
+						</tr>
+					</thead>
+					<tbody id="studenti_verbale_table_body"class="blueTable"></tbody>
+				</table>
+			
+			</div>
+			
+			<div id="modalDiv" class="modal">
+				<div id="modal_content" class="modal_content">
+				
+					<button id="closeButton" class="close">&#10006;</button>
+				
+			    	<div style="margin:10px">
+		   				<p class="smallTitle">Voto: </p>
+						<form method="POST">
+							<input id="voto_mult" type="text" name="voto">
+							<input id="assign_mult_button" type="submit" value="Assegna">
+						</form>
+				   	</div>
+			    	
+			    	<table id="ins_mult_table" class="blueTable">
+						<thead>
+							<tr class="blueTable">
+								<th class="blueTable">Matricola studente</th>
+								<th class="blueTable">Seleziona</th>
+							</tr>
+						</thead>
+						<tbody id="ins_mult_table_body" class="blueTable"></tbody>
+					</table>
+					
+			  	</div>
+			</div>
+			
+			<br>
+			
+			<div id="form_esame">
+	 	
+		 		<table id="form_esame_table" class="blueTable"></table>
+		   
+			    <div style="margin:10px">
+	   				<p class="smallTitle">Voto: </p>
+					<form method="POST">
+						<input id="voto_text" type="text" name="voto">
+						<input id="assign_button" type="submit" value="Assegna">
+					</form>
+			   	</div>
+			   	
+		 	</div>
+  		</div>
+  	</div>
+</body>
+</html>
