@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<LINK rel="stylesheet" type="text/css"  href='css/mystyle.css'>
+<title>Esito</title>
+</head>
+<body>
+	<div align="right">
+		<a class="logout" th:href="@{HomepageStudente}">Back</a>
+	</div>
+	
+	<h3 class="blueTitle">Esito Page</h3>
+	
+	<div th:if="${!votoPubblicato}"><p class="paragraph">Voto non ancora definito</p></div>
+	<div th:if="${votoPubblicato}">
+  	<table class="blueTable">
+      <tr class="blueTable">
+        <th class="grayTable">Cognome</th>
+        <td class="blueTable" th:text="${studente.getCognome()}">bianchi</td>
+      </tr>
+      <tr class="blueTable">
+        <th class="grayTable">Nome</th>
+        <td class="blueTable" th:text="${studente.getNome()}">francesco</td>
+      </tr>
+      <tr class="blueTable">
+        <th class="grayTable">Matricola</th>
+        <td class="blueTable" th:text="${studente.getMatricola()}">10213658</td>
+      </tr>
+    </table>
+    
+    <p th:if="${votoRifiutato}" class="paragraph">Voto rifiutato</p>
+    
+    <table>
+      <tr>
+        <td>
+          <table class="blueTable">
+            <thead class="blueTable">
+              <tr class="blueTable">
+                <th class="blueTable">Corso</th>
+                <th class="blueTable">Docente</th>
+                <th class="blueTable">Data</th>
+                <th class="blueTable">Esito</th>
+                <th class="blueTable">Stato</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="blueTable">
+                <td class="blueTable" th:text="${scaglione.getNome_insegnamento()}">informatica</td>
+                <td class="blueTable" th:text="${docente.getNome() + ' ' + docente.getCognome()}">antonio miele</td>
+                <td class="blueTable" th:text="${appello.getDate()}">10/05/2020</td>
+                <td class="blueTable" th:text="${esame.getVoto()}">30</td>
+                <td class="blueTable" th:text="${esame.getDesc_esito()}">rifiutato</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td>
+        	<div th:if="${votoRifiutabile}">
+	            <form th:action="@{/Rifiuta}" method="POST">
+					<input type="hidden" name="id_appello" th:value="${appello.getId()}">
+					<input type="submit" value="Rifiuta">
+				</form>
+        	</div>
+        </td>
+      </tr>
+    </table>
+	</div>
+</body>
+</html>

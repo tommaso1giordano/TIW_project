@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<LINK rel="stylesheet" type="text/css"  href='css/mystyle.css'>
+<title>Verbale esame</title>
+</head>
+<body>
+	<div align="right">
+		<a class="logout" th:href="@{IscrittiPage(id_appello=${verbale.id_appello}, sortBy='matricola', sortOrder='asc')}">Back</a>
+	</div>
+	<h3 class="blueTitle">Dati del verbale selezionato</h3>
+	
+	<table class="blueTable">
+      <tr class="blueTable">
+        <th class="grayTable">ID verbale</th>
+        <td class="blueTable" th:text="${verbale.id}">12</td>
+      </tr>
+      <tr class="blueTable">
+        <th class="grayTable">ID appello d'esame</th>
+        <td class="blueTable" th:text="${verbale.id_appello}">5</td>
+      </tr>
+      <tr class="blueTable">
+        <th class="grayTable">Nome insegnamento</th>
+        <td class="blueTable" th:text="${verbale.nome_insegnamento}">Analisi 2</td>
+      </tr>
+      <tr class="blueTable">
+        <th class="grayTable">Data creazione</th>
+        <td class="blueTable" th:text="${verbale.datetime}">2023/12/21</td>
+      </tr>
+    </table>
+	<table>
+		<tr>
+			<td>
+				<table class="blueTable" border="1">
+					<thead>
+						<tr class="blueTable">
+							<th class="blueTable">Matricola studente</th>
+							<th class="blueTable">Voto esame</th>
+						</tr>
+					</thead>
+					<tbody class="blueTable">
+						<tr class="blueTable" th:each="studente: ${votiStudenti.keySet()}">
+					        <td class="blueTable" th:text="${studente.matricola}"></td>
+					        <td class="blueTable" th:text="${votiStudenti.get(studente)}"></td>
+					    </tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

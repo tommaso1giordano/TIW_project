@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<LINK rel="stylesheet" type="text/css"  href='css/mystyle.css'>
+<title>Iscritti</title>
+</head>
+<body>
+	<div align="right">
+		<a class="logout" th:href="@{HomepageDocente}">Back</a>
+	</div>
+	
+	<p class="paragraph" th:if="${isEsamiEmpty}">Non sono ancora stati assegnati degli iscritti a quest'appello.</p>
+	
+	<div th:if="${!isEsamiEmpty}">
+		<h3 class="blueTitle">Iscritti all'appello:</h3>
+			<table class="blueTable">
+				<thead class="blueTable">
+					<tr class="blueTable">
+						<th class="blueTable">
+							<a th:href="@{/IscrittiPage(id_appello=${id_appello}, sortBy='matricola_studente', sortOrder = ${!sortBy.equals('matricola_studente') ? 'asc' : (sortOrder.equals('asc') ? 'desc' : 'asc')})}">Matricola studente</a>
+						</th>
+						<th class="blueTable">
+							<a th:href="@{/IscrittiPage(id_appello=${id_appello}, sortBy='nominativo', sortOrder = ${!sortBy.equals('nominativo') ? 'asc' : (sortOrder.equals('asc') ? 'desc' : 'asc')})}">Cognome e nome</a>
+						</th>
+						<th class="blueTable">
+							<a th:href="@{/IscrittiPage(id_appello=${id_appello}, sortBy='email', sortOrder = ${!sortBy.equals('email') ? 'asc' : (sortOrder.equals('asc') ? 'desc' : 'asc')})}">Email</a>
+						</th>
+						<th class="blueTable">
+							<a th:href="@{/IscrittiPage(id_appello=${id_appello}, sortBy='corso_di_laurea', sortOrder = ${ !sortBy.equals('corso_di_laurea') ? 'asc' : (sortOrder.equals('asc') ? 'desc' : 'asc')})}">Corso di laurea</a>
+						</th>
+						<th class="blueTable">
+							<a th:href="@{/IscrittiPage(id_appello=${id_appello}, sortBy='voto', sortOrder = ${!sortBy.equals('voto') ? 'asc' : (sortOrder.equals('asc') ? 'desc' : 'asc')})}">Voto</a>
+						</th>
+						<th class="blueTable">
+							<a th:href="@{/IscrittiPage(id_appello=${id_appello}, sortBy='stato_di_valutazione', sortOrder = ${!sortBy.equals('stato_di_valutazione') ? 'asc' : (sortOrder.equals('asc') ? 'desc' : 'asc')})}">Stato di valutazione</a>
+						</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody class="blueTable">
+					<tr class="blueTable" th:each="e : ${esami}">	
+						<td class="blueTable" th:text="${e.matricola_studente}" >10548625</td>
+						<td class="blueTable" th:text="${e.nominativo}">Bianchi Francesco</td>
+						<td class="blueTable" th:text="${e.email}">francesco.bianchi@mail.polimi.it</td>
+						<td class="blueTable" th:text="${e.corso_di_laurea}">informatica</td>
+						<td class="blueTable" th:text="${e.voto}"></td>
+						<td class="blueTable" th:text="${e.desc_esito}">Inserito</td> 
+						<td class="blueTable">
+						<div th:if="${e.desc_esito.equals('Non inserito') || e.desc_esito.equals('Inserito')}">
+							<form action="GoToFormEsame" method="POST">
+								<input type="hidden" th:value="${e.matricola_studente}" name="matricola">
+								<input type="hidden" th:value="${id_appello}" name="id_appello">
+								<input type="submit" value="Modifica">
+							</form>
+						</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		<div>
+			<form action="Pubblica" method="POST" style="display: inline-block;">
+				<input type="hidden" th:value="${id_appello}" name="id_appello">
+				<input type="submit" value="Pubblica">
+			</form>
+			<form action="Verbalizza" method="POST" style="display: inline-block;">
+				<input type="hidden" th:value="${id_appello}" name="id_appello">
+				<input type="submit" value="Verbalizza">
+			</form>
+		</div>
+	</div>
+	
+	<p class="paragraph" th:if="${isVerbaliEmpty}"><br>Non sono ancora stati generati dei verbali.</p>
+	
+	<div th:if="${!isVerbaliEmpty}">
+		<table class="blueTable" border="1">
+			<thead>
+				<tr class="blueTable">
+					<th class="blueTable">ID</th>
+					<th class="blueTable">Data creazione</th>
+				</tr>
+			</thead>
+			<tbody class="blueTable">
+				<tr class="blueTable" th:each="v : ${verbali}">
+				<td class="blueTable">
+					<a href="VerbalePage.html" onclick="GoToVerbalePage"
+						th:href="@{/VerbalePage(id_verbale=${v.id})}">
+							<span th:text="${v.id}">ID</span>
+					</a>
+				</td>
+				<td class="blueTable" th:text="${v.datetime}">2023-11-23 17:34:50</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+	
+</body>
+</html>

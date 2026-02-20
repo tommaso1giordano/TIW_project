@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<LINK rel="stylesheet" type="text/css"  href='css/mystyle.css'>
+<title>Homepage Studente</title>
+</head>
+<body>
+	<div align="right">
+		<a class="logout" th:href="@{/Logout}">Logout</a>
+	</div>
+	<h3 class="blueTitle" th:text="${studente.getNome() + ' ' + studente.getCognome() + ' homepage'}">francesco bianchi homepage</h3>
+	
+	<p class="paragraph" th:if="${isScaglioniEmpty}">Non sei ancora stato iscritto a nessuno corso.</p>
+	
+	<div th:if="${!isScaglioniEmpty}">
+		<p class="paragraph">Usa la seguente lista per ispezionare i corsi a cui sei iscritto:</p>
+		
+		<table>
+			<tr>
+				<td>
+					<table class="blueTable" border="1">
+						<thead>
+							<tr class="blueTable">
+								<th class="blueTable">ID scaglione</th>
+								<th class="blueTable">Nome insegnamento</th>
+								<th class="blueTable">Anno</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="blueTable" th:each="s : ${scaglioni}">
+								<td class="blueTable">
+									<a href="HomepageStudente.html"
+										th:href="@{/HomepageStudente(id_scaglione=${s.id})}"><span
+											th:text="${s.id}">1</span>
+									</a>
+								</td>
+								<td class="blueTable" th:text="${s.nome_insegnamento}">informatica</td>
+								<td class="blueTable" th:text="${s.anno}">2023</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+				<td>
+					<p class="paragraph" th:if="${isAppelliEmpty}">Non sei stato ancora iscritto a nessun appello.</p>
+				
+					<div th:if="${!isAppelliEmpty}">
+						<table class="blueTable" border="1">
+							<thead>
+								<tr class="blueTable">
+									<th class="blueTable">ID esame</th>
+									<th class="blueTable">Data esame</th>
+								</tr>
+							</thead>
+							<tbody class="blueTable">
+								<tr class="blueTable" th:each="a : ${appelli}">
+									<td class="blueTable">
+										<a href="EsitoPage.html" onclick="GoToEsitoPage"
+											th:href="@{/Esito(id_appello=${a.id})}"><span
+												th:text="${a.id}">2</span>
+										</a>
+									</td>
+									<td class="blueTable" th:text="${a.getDate()}">Esempio di data</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	
+</body>
+</html>

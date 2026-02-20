@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<LINK rel="stylesheet" type="text/css"  href='css/mystyle.css'>
+<title>Form Esame</title>
+</head>
+<body>
+	<h3 class="blueTitle">Form esame</h3>
+  
+  <table class="blueTable">
+      <tr class="blueTable">
+        <th class="grayTable">Matricola</th>
+        <td class="grayTable" th:text="${studente.matricola}">bianchi</td>
+      </tr>
+      <tr class="blueTable">
+        <th class="grayTable">Nome</th>
+        <td class="grayTable" th:text="${studente.nome}">francesco</td>
+      </tr>
+      <tr class="blueTable">
+        <th class="grayTable">Cognome</th>
+        <td class="grayTable" th:text="${studente.cognome}">bianchi</td>
+      </tr>
+      <tr class="blueTable">
+        <th class="grayTable">email</th>
+        <td class="grayTable" th:text="${studente.email}">francesco.bianchi@mail.polimi.it</td>
+      </tr>
+      <tr class="blueTable">
+        <th class="grayTable">corso di laurea</th>
+        <td class="grayTable" th:text="${laurea.nome}">informatica</td>
+      </tr>
+      <tr class="blueTable">
+        <th class="grayTable">stato esito</th>
+        <td class="grayTable" th:text="${esame.desc_esito}">Non inserito</td>
+      </tr>
+    </table>
+    
+	<div><p class="smallTitle">Voto: </p>
+		<form action="AssignGrade" method="POST">
+			<input type="hidden" th:value="${esame.matricola_studente}" name="matricola">
+			<input type="hidden" th:value="${esame.id_appello}" name="id_appello">
+			<input type="text" th:value="${esame.voto}" name="voto">
+			<input type="submit" value="Assegna">
+		</form>
+	</div>
+</body>
+</html>

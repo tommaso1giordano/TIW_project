@@ -1,0 +1,100 @@
+.toohigh {background-color: salmon;}
+.current {background-color: lightgreen;}
+.border{
+  background: #d8d8d8;
+  border-width: 3px;
+  border-color: #d8d8d8;
+  border-style: solid;
+  display: inline-block;
+  padding: 5px;
+  border-radius: 5px;
+}
+input.inputButton{
+  background-color: #069;
+  border-color: #005580;
+  color: white;
+  margin: 5px 10px;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 5px;
+}
+input{
+  margin: 3px;
+  font-size: 15px;
+}
+p{
+  color:#333;
+  font-family: verdana;
+  font-weight: normal;
+  font-size: 17px;
+  margin:3px;
+}
+p.smallTitle{
+  font-weight: bold;
+}
+h3.blueTitle{
+  color: #069;
+}
+h3 {
+    color: #333;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    font-family: verdana;
+}
+a.logout{
+  color: #069;
+  font-weight: bold;
+  text-decoration: underline;
+  text-align: right;
+  font-family: verdana;
+  font-size: 100%;
+}
+th{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left:10px;
+    padding-right:10px;
+    border: 1px solid #d5dfe4;
+    font-family: verdana;
+    font-weight: bold;
+    text-align: center;
+    font-size: 15px;
+}
+table.blueTable, td.blueTable {
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: 1px solid #d5dfe4;
+    border-collapse: collapse;
+    font-family:verdana;
+    font-size: 15px;
+    text-align:center;
+    margin: 10px;
+}
+th.blueTable{
+    background: #f3f3ee;
+    color: #069;
+}
+th.grayTable{
+    color: #333;
+    background: #f3f3ee;
+    font-weight: normal;
+    text-align:left;
+}
+td.grayTable{
+  padding-top:5px;
+    padding-bottom:5px;
+    padding-left: 10px;
+    padding-right: 30px;
+    border: 1px solid #d5dfe4;
+    border-collapse: collapse;
+    font-family:verdana;
+    font-size: 16px;
+    text-align:left;
+    margin: 10px;
+}
