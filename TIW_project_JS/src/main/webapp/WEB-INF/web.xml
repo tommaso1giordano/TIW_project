@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>TIW_project_JS</display-name>
+  <context-param>
+    <param-name>dbUrl</param-name>
+    <param-value>jdbc:mysql://localhost:3306/dblogintest?serverTimezone=UTC</param-value>
+  </context-param>
+  <context-param>
+    <param-name>dbUser</param-name>
+    <param-value>root</param-value>
+  </context-param>
+  <context-param>
+    <param-name>dbPassword</param-name>
+    <param-value>letmein</param-value>
+  </context-param>
+  <context-param>
+    <param-name>dbDriver</param-name>
+    <param-value>com.mysql.cj.jdbc.Driver</param-value>
+  </context-param>
+  
+   <filter> 
+  <filter-name>ProfessorChecker</filter-name> 
+      <filter-class>TIW_project_JS.filters.ProfessorChecker</filter-class> 
+ </filter>
+  <filter> 
+  <filter-name>StudentChecker</filter-name> 
+      <filter-class>TIW_project_JS.filters.StudentChecker</filter-class> 
+ </filter> 
+ 
+ <filter-mapping> 
+    <filter-name>ProfessorChecker</filter-name>
+    <url-pattern>/HomepageDocente</url-pattern>
+    <url-pattern>/AssignGrade</url-pattern>
+    <url-pattern>/GetAppelliByScaglione</url-pattern>
+    <url-pattern>/GetDocente</url-pattern>
+    <url-pattern>/GetEsamiByAppello</url-pattern>
+    <url-pattern>/GetVerbaleInfoByIdVerbale</url-pattern>
+    <url-pattern>/GetVerbaliByAppello</url-pattern>
+    <url-pattern>/Pubblica</url-pattern>
+    <url-pattern>/Verbalizza</url-pattern>
+    <url-pattern>/AssignMultGrade</url-pattern>
+    <url-pattern>/GetEsame</url-pattern>
+ </filter-mapping> 
+  <filter-mapping> 
+    <filter-name>StudentChecker</filter-name>
+    <url-pattern>/HomepageStudente</url-pattern>
+    <url-pattern>/GetAppelli</url-pattern>
+    <url-pattern>/GetEsito</url-pattern>
+    <url-pattern>/GetStudente</url-pattern>
+    <url-pattern>/Rifiuta</url-pattern>
+ </filter-mapping> 
+ 
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+</web-app>
